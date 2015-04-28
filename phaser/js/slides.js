@@ -282,6 +282,16 @@ Scene.Animation.prototype = {
       this.kabocha.angle += 1;
     }
     changePage("Animation");
+  },
+  render: function() {
+    var x = game.world.width - 240;
+    game.debug.text('Z: angle up', x, game.world.height-114, color.font);
+    game.debug.text('X: angle reset', x, game.world.height-96, color.font);
+    game.debug.text('C: scale up', x, game.world.height-80, color.font);
+    game.debug.text('H: walk down', x, game.world.height-64, color.font);
+    game.debug.text('J: walk left', x, game.world.height-48, color.font);
+    game.debug.text('K: walk right', x, game.world.height-32, color.font);
+    game.debug.text('L: walk up', x, game.world.height-16, color.font);
   }
 };
 
@@ -308,6 +318,9 @@ Scene.Monsters.prototype = {
     var names = ["monster1", "monster2", "monster3", "monster4"];
     for (var i=0; i<12; i++) {
       var monster = this.monsterGroup.create(180+i*68, 80, names[i%4]);
+
+      game.physics.arcade.enable(monster); // , Phaser.Physics.ARCADE);
+
       monster.body.collideWorldBounds = true;
       monster.body.gravity.setTo(0, 0);
       monster.body.bounce.setTo(0.9, 0.9);
@@ -317,6 +330,9 @@ Scene.Monsters.prototype = {
   update: function() {
     if (isKeyDown("Z")) {
       this.monsters.forEach(function(monster) {
+        if (!monster.body) {
+          game.physics.arcade.enable(monster);
+        }
         // monster.body.bounce.setTo(0.6, 0.6);
         monster.body.gravity.x = game.rnd.integerInRange(-50, 50);
         monster.body.gravity.y = 100 + Math.random() * 100;
@@ -325,6 +341,9 @@ Scene.Monsters.prototype = {
 
     // game.physics.arcade.collide(this.monsterGroup);
     changePage("Monsters");
+  },
+  render: function() {
+    game.debug.text('Z: start demo', game.world.width-240, game.world.height-16, color.font);
   }
 };
 

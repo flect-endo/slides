@@ -26,6 +26,8 @@ function isKeyDown(key) {
 
 // 見出し
 function title(text) {
+  console.log("create: " + text);
+
   var text = game.add.text(20, 20, text);
   text.fontSize = 100;
   text.fill = color.font2;

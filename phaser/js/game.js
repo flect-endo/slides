@@ -14,12 +14,12 @@ for (var sceneName in Scene) {
   var scene = Scene[sceneName];
   game.state.add(sceneName, scene);
 
-  Scene[sceneName].prototype.pageNumber = pages.indexOf(sceneName)+1;
+  // Scene[sceneName].prototype.pageNumber = pages.indexOf(sceneName)+1;
 
   // ページ番号(各シーンでrenderが定義されているとNGかも)
-  Scene[sceneName].prototype.render = function() {
-    game.debug.text('P. ' + this.pageNumber, game.world.width-80, 20, color.font2);
-  };
+  // Scene[sceneName].prototype.render = function() {
+    // game.debug.text('P. ' + this.pageNumber, game.world.width-80, 20, color.font2);
+  // };
 }
 
 // game.time.advancedTiming = true;
